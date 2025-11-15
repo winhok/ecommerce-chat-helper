@@ -67,7 +67,7 @@ export async function callAgent(client: MongoClient, query: string, thread_id: s
             new GoogleGenerativeAIEmbeddings({
               apiKey: process.env.GOOGLE_API_KEY || '',
               ...(process.env.GOOGLE_API_BASE_URL && { baseUrl: process.env.GOOGLE_API_BASE_URL }),
-              modelName: 'text-embedding-004',
+              modelName: 'gemini-embedding-exp-03-07',
             }),
             dbConfig
           )
@@ -192,7 +192,11 @@ export async function callAgent(client: MongoClient, query: string, thread_id: s
       },
       {
         recursionLimit: 15,
-        configurable: { thread_id: thread_id },
+        configurable: {
+          thread_id: thread_id,
+          checkpoint_ns: '',
+          checkpoint_id: `${thread_id}-checkpoint`,
+        },
       }
     )
 

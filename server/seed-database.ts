@@ -139,7 +139,7 @@ async function seedDatabase(): Promise<void> {
       await MongoDBAtlasVectorSearch.fromDocuments(
         [record],
         new GoogleGenerativeAIEmbeddings({
-          modelName: 'text-embedding-004',
+          modelName: 'gemini-embedding-exp-03-07',
           apiKey: process.env.GOOGLE_API_KEY || '',
           ...(process.env.GOOGLE_API_BASE_URL && { baseUrl: process.env.GOOGLE_API_BASE_URL }),
         }),

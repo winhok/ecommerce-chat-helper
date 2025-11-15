@@ -8,7 +8,12 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-const client = new MongoClient(process.env.MONGODB_ATLAS_URI as string)
+const client = new MongoClient(process.env.MONGODB_ATLAS_URI as string, {
+  tls: true,
+  tlsInsecure: false,
+  serverSelectionTimeoutMS: 5000,
+  socketTimeoutMS: 45000,
+})
 async function startServer() {
   try {
     await client.connect()
@@ -33,10 +38,10 @@ async function startServer() {
     })
 
     app.post('/chat/:threadId', async (req: Request, res: Response) => {
-      const { thread_id } = req.params
+      const { threadId } = req.params
       const { message } = req.body
       try {
-        const response = await callAgent(client, message, thread_id as string)
+        const response = await callAgent(client, message, threadId as string)
         res.json({ response })
       } catch (error) {
         console.error('Error continuing chat thread', error)
