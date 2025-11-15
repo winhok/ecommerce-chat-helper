@@ -6,7 +6,6 @@ import { Annotation, StateGraph } from '@langchain/langgraph'
 import { MongoDBSaver } from '@langchain/langgraph-checkpoint-mongodb'
 import { ToolNode } from '@langchain/langgraph/prebuilt'
 import { MongoDBAtlasVectorSearch } from '@langchain/mongodb'
-import 'dotenv/config'
 import { MongoClient } from 'mongodb'
 import { z } from 'zod'
 

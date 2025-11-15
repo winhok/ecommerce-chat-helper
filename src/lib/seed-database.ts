@@ -1,7 +1,6 @@
 import { StructuredOutputParser } from '@langchain/core/output_parsers'
 import { ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings } from '@langchain/google-genai'
 import { MongoDBAtlasVectorSearch } from '@langchain/mongodb'
-import 'dotenv/config'
 import { MongoClient } from 'mongodb'
 import { z } from 'zod'
 
